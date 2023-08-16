@@ -1,6 +1,7 @@
-import DirectoryItem from '../directory-item/directory-item.component'
+import DirectoryItem from '../directory-item/directory-item.component';
 
-import { DirectoryContainer } from './directory.styles'
+import { DirectoryContainer } from './directory.styles';
+
 const categories = [
   {
     id: 1,
@@ -32,7 +33,7 @@ const categories = [
     imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
     route: 'shop/mens',
   },
-]
+];
 
 const Directory = () => {
   return (
@@ -41,7 +42,7 @@ const Directory = () => {
         <DirectoryItem key={category.id} category={category} />
       ))}
     </DirectoryContainer>
-  )
-}
+  );
+};
 
-export default Directory
+export default Directory;

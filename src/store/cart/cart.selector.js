@@ -1,15 +1,24 @@
-import { createSelector } from '@reduxjs/toolkit'
-const selectCartReducer = (state) => state.cart
+import { createSelector } from 'reselect';
 
-export const selectCartItems = createSelector([selectCartReducer], (cart) => cart.cartItems)
-export const selectIsCartOpen = createSelector([selectCartReducer], (cart) => cart.isCartOpen)
-export const selectCartCount = createSelector([selectCartReducer], (cart) => {
-  return cart.cartItems.reduce((total, cartItems) => total + cartItems.quantity, 0)
-})
+const selectCartReducer = (state) => state.cart;
 
-export const selectCartTotal = createSelector([selectCartReducer], (cart) => {
-  return cart.cartItems.reduce(
-    (total, cartItems) => total + cartItems.quantity * cartItems.price,
+export const selectIsCartOpen = createSelector(
+  [selectCartReducer],
+  (cart) => cart.isCartOpen
+);
+
+export const selectCartItems = createSelector(
+  [selectCartReducer],
+  (cart) => cart.cartItems
+);
+
+export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce(
+    (total, cartItem) => total + cartItem.quantity * cartItem.price,
     0
   )
-})
+);
+
+export const selectCartCount = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
+);

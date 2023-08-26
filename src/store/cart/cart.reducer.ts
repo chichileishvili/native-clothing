@@ -5,7 +5,7 @@ import { CategoriItem } from '../categories/category.reducer'
 export type CartItem = CategoriItem & {
   quantity: number
 }
-type CartState = {
+export type CartState = {
   isCartOpen: boolean
   cartItems: CartItem[]
 }

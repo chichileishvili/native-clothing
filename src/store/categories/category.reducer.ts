@@ -12,7 +12,7 @@ export type CategoryMap = {
 }
 
 // Defining the state structure using type
-type Category = {
+export type Category = {
   items: CategoriItem[]
   name: string
   title: string

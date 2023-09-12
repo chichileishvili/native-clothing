@@ -5,9 +5,9 @@ import { cartReducer, CartState } from './cart/cart.reducer'
 
 // Define a type for the root state
 export type RootState = {
-  user: UserState,
-  categories: CategoriesState,
-  cart: CartState,
+  user: UserState
+  categories: CategoriesState
+  cart: CartState
 }
 
 export const rootReducer = combineReducers({

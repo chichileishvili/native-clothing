@@ -1,6 +1,6 @@
-import DirectoryItem from '../directory-item/directory-item.component';
+import DirectoryItem from '../directory-item/directory-item.component'
 
-import { DirectoryContainer } from './directory.styles';
+import { DirectoryContainer } from './directory.styles'
 
 const categories = [
   {
@@ -23,17 +23,17 @@ const categories = [
   },
   {
     id: 4,
-    title: 'womens',
+    title: 'woman',
     imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
     route: 'shop/womens',
   },
   {
     id: 5,
-    title: 'mens',
+    title: 'man',
     imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
     route: 'shop/mens',
   },
-];
+]
 
 const Directory = () => {
   return (
@@ -42,7 +42,7 @@ const Directory = () => {
         <DirectoryItem key={category.id} category={category} />
       ))}
     </DirectoryContainer>
-  );
-};
+  )
+}
 
-export default Directory;
+export default Directory

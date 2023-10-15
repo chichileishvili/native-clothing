@@ -29,8 +29,6 @@ const App = () => {
         user &&
         (({ accessToken, email, displayName }) => ({ accessToken, email, displayName }))(user)
 
-      console.log(user)
-      // console.log(setCurrentUser(pickedUser))
       dispatch(setCurrentUser(pickedUser))
     })
 

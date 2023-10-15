@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import {
   onAuthStateChangedListener,
@@ -13,17 +13,24 @@ import Authentication from './routes/authentication/authentication.component'
 import Shop from './routes/shop/shop.component'
 import Checkout from './routes/checkout/checkout.component'
 import { setCurrentUser } from './store/user/user.reducer'
+import { selectCurrentUser } from './store/user/user.selector'
+import { useSelector } from 'react-redux'
 
 const App = () => {
   const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user)
       }
-      console.log(setCurrentUser(user))
-      const pickedUser = user && (({ accsesToken, email }) => ({ accsesToken, email }))(user)
+      const pickedUser =
+        user &&
+        (({ accessToken, email, displayName }) => ({ accessToken, email, displayName }))(user)
+
+      console.log(user)
+      // console.log(setCurrentUser(pickedUser))
       dispatch(setCurrentUser(pickedUser))
     })
 
@@ -35,7 +42,10 @@ const App = () => {
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path='shop/*' element={<Shop />} />
-        <Route path='auth' element={<Authentication />} />
+        <Route
+          path='auth'
+          element={(!currentUser && <Authentication />) || (currentUser && <Navigate to='/' />)}
+        />
         <Route path='checkout' element={<Checkout />} />
       </Route>
     </Routes>
